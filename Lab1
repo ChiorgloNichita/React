@@ -1,1 +1,82 @@
+1. Header.jsx
+```jsx
+   function Header() {
+     return (
+       <header>
+         <h1>Mini-Blog</h1>
+       </header>
+     );
+   }
+   
+   export default Header;
+   ```
+2. Footer.jsx
+   ```jsx
+   function Footer() {
+     return (
+       <footer>
+         <p>&copy; {new Date().getFullYear()} Mini-Blog</p>
+       </footer>
+     );
+   }
+   
+   export default Footer;
+   ```
+ 3.Article.jsx
+   ```jsx
+   function Article({ title, text }) {
+     return (
+       <article>
+         <h2>{title}</h2>
+         <p>{text}</p>
+       </article>
+     );
+   }
+   
+   export default Article;
+   ```
+4. Компонент ArticleList
+1. Создал файл `src/components/ArticleList.jsx`.
+2. Добавил следующий код:
+   ```jsx
+   import Article from "./Article";
 
+   function ArticleList() {
+     const articles = [
+       { title: "Статья 1", text: "Текст статьи 1" },
+       { title: "Статья 2", text: "Текст статьи 2" },
+       { title: "Статья 3", text: "Текст статьи 3" },
+       { title: "Статья 4", text: "Текст статьи 4" },
+     ];
+
+     return (
+       <main>
+         {articles.map((article, index) => (
+           <Article key={index} title={article.title} text={article.text} />
+         ))}
+       </main>
+     );
+   }
+   
+   export default ArticleList;
+   ```
+
+5. Объединение компонентов в App
+ В файле `src/App.jsx` заменил код на:
+   ```jsx
+   import Header from "./components/Header.jsx";
+   import ArticleList from "./components/ArticleList.jsx";
+   import Footer from "./components/Footer.jsx";
+
+   function App() {
+     return (
+       <div>
+         <Header />
+         <ArticleList />
+         <Footer />
+       </div>
+     );
+   }
+   
+   export default App;
+   ```
