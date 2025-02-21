@@ -1,9 +1,9 @@
- Footer.jsx
-   ```jsx
-   function Footer() {
-     return (
-       <footer>
-         <p>&copy; {new Date().getFullYear()} Mini-Blog</p>
-       </footer>
-     );
+```jsx
+export default function Footer() {
+    return (
+      <footer>
+        <p>© {(new Date().getFullYear())}</p>
+      </footer>
+    );
    }
+```
