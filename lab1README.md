@@ -43,54 +43,49 @@
  Компонент Header
 1. Создаю файл `src/components/Header.jsx`.
 2. Добавляю в него следующий код:
-   ```jsx
-   function Header() {
-     return (
-       <header>
-         <h1>Mini-Blog</h1>
-       </header>
-     );
+```jsx
+export default function Header() {
+    return (
+      <header>
+        <h1>Mini-Blog</h1>
+      </header>
+    );
    }
-   
-   export default Header;
-   ```
+```
+
 
 Компонент Footer
 1. Создал файл `src/components/Footer.jsx`.
 2. Добавляю следующий код:
-   ```jsx
-   function Footer() {
-     return (
-       <footer>
-         <p>&copy; {new Date().getFullYear()} Mini-Blog</p>
-       </footer>
-     );
+```jsx
+export default function Footer() {
+    return (
+      <footer>
+        <p>© {(new Date().getFullYear())}</p>
+      </footer>
+    );
    }
-   
-   export default Footer;
-   ```
+```
 
  Компонент Article
 1. Создал файл `src/components/Article.jsx`.
 2. Добавил следующий код:
-   ```jsx
-   function Article({ title, text }) {
-     return (
-       <article>
-         <h2>{title}</h2>
-         <p>{text}</p>
-       </article>
-     );
+  ```jsx
+export default function Article({title, text}) {
+    return (
+      <article>
+        <h2>{title}</h2>
+        <p>{text}</p>
+      </article>
+    );
    }
-   
-   export default Article;
-   ```
+```
 
  Компонент ArticleList
 1. Создал файл `src/components/ArticleList.jsx`.
 2. Добавил следующий код:
    ```jsx
-   import Article from "./Article";
+   import Article from "./Article.jsx";
 
    function ArticleList() {
      const articles = [
