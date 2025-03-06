@@ -1,0 +1,36 @@
+#root {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  color: rgb(10, 50, 160);
+  padding: 0.7rem;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 12px;
+  border: 1px solid #88a;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.article {
+  font-family: 'Times New Roman', sans-serif;
+}
+
+.article__title {
+  color: rgb(20, 40, 120);
+}
+
+.footer {
+  font-size: small;
+  font-family: 'Space Grotesk', sans-serif;
+  color: rgb(10, 50, 160);
+}
