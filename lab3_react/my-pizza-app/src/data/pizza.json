@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "name": "Маргарита",
+      "description": "Соус, сыр, помидоры",
+      "price": 200,
+      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "category": "Сырная",
+      "sizes": [30, 40, 50]
+    },
+    {
+      "id": 2,
+      "name": "Пепперони",
+      "description": "Соус, сыр, пепперони",
+      "price": 250,
+      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "category": "Мясная",
+      "sizes": [30, 40, 50]
+    }
+  ]
+  
