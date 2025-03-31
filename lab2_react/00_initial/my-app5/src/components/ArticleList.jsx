@@ -1,12 +1,12 @@
 import Article from "./Article";
 
-   function ArticleList() {
-     const articles = [
-       { title: "Утро", text: "Проспал будильник" },
-       { title: "День", text: "Обед был вкусным" },
-       { title: "Вечер", text: "Просмотрел фильм" },
-       { title: "Ночь", text: "Заснул поздно" },
-     ];
+export default function ArticleList() {
+  const articles = [
+    { title: "День в универе", text: "Сегодня был плохой день" },
+    { title: "День дома", text: "Сегодня был хороший день" },
+    { title: "День на море", text: "Сегодня был отличный день" },
+    { title: "День в школе", text: "Сегодня был ужасный день" },
+  ];
 
      return (
        <main>
@@ -16,6 +16,4 @@ import Article from "./Article";
        </main>
      );
    }
-   
-   export default ArticleList;
   

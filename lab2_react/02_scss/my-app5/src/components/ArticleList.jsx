@@ -1,24 +1,12 @@
 import Article from './Article';
 
-const article1 = {
-  title: "День в универе",
-  text: "сегодня был плохой день"
-};
-
-const article2 = {
-  title: "День дома",
-  text: "сегодня был хороший день"
-};
-
-const article3 = {
-  title: "День на море",
-  text: "сегодня был отличный день"
-};
-
-const article4 = {
-  title: "День в школе",
-  text: "сегодня был ужасный день"
-};
+function ArticleList() {}
+  const articles = [
+    { title: "Утро", text: "Проспал будильник" },
+    { title: "День", text: "Обед был вкусным" },
+    { title: "Вечер", text: "Просмотрел фильм" },
+    { title: "Ночь", text: "Заснул поздно" },
+  ];
 
 export default function ArticleList() {
   return (

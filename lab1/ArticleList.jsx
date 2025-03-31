@@ -1,6 +1,4 @@
-ArticleList
-   ```jsx
-   import Article from "./Article";
+import Article from "./article";
 
    function ArticleList() {
      const articles = [
@@ -20,4 +18,4 @@ ArticleList
    }
    
    export default ArticleList;
-   ```
+

@@ -1,4 +1,3 @@
-```jsx
 export default function Article({title, text}) {
     return (
       <article>
@@ -7,4 +6,3 @@ export default function Article({title, text}) {
       </article>
     );
    }
-```
