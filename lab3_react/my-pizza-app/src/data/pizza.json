@@ -4,7 +4,7 @@
       "name": "Маргарита",
       "description": "Соус, сыр, помидоры",
       "price": 200,
-      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "image": "https://joinposter.com/upload/pos_cdb_359454/menu/product_1723216716_32_original.jpeg",
       "category": "Сырная",
       "sizes": [30, 40, 50]
     },
@@ -13,7 +13,7 @@
       "name": "Пепперони",
       "description": "Соус, сыр, пепперони",
       "price": 250,
-      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "image": "https://joinposter.com/upload/pos_cdb_359454/menu/product_1723213701_38_original.jpeg",
       "category": "Мясная",
       "sizes": [30, 40, 50]
     },
@@ -22,7 +22,7 @@
       "name": "Четыре сыра",
       "description": "Соус, сыр Моцарелла, сыр Пармезан, сыр Горгонзола, сыр Чеддер",
       "price": 280,
-      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "image": "https://joinposter.com/upload/pos_cdb_359454/menu/product_1723225556_23_original.jpeg",
       "category": "Сырная",
       "sizes": [30, 40, 50]
     },
@@ -31,7 +31,7 @@
       "name": "Гавайская",
       "description": "Соус, сыр, ананасы, курица",
       "price": 270,
-      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "image": "https://joinposter.com/upload/pos_cdb_359454/menu/product_1723231282_24_original.jpeg",
       "category": "Экзотическая",
       "sizes": [30, 40, 50]
     }
