@@ -1,10 +1,18 @@
-import React from 'react';
-import styles from './Header/Header.module.scss';
+import styled from 'styled-components';
 
-export default function Header() {
+const HeaderStyled = styled.header`
+  background-color:rgb(70, 11, 172);
+  color: white;
+  padding: 5px;
+  text-align: center;
+`;
+
+function Header() {
   return (
-    <header className={styles.header}>
-      <h1 className={styles.header__title}>Mini-Blog</h1>
-    </header>
+    <HeaderStyled>
+      <h1>Mini-Blog</h1>
+    </HeaderStyled>
   );
 }
+
+export default Header;

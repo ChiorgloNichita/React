@@ -1,12 +1,69 @@
-# React + Vite
+# Стилизация компонентов с помощью Styled Components
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**CSS-in-JS** — это метод стилизации, который позволяет интегрировать CSS прямо в JavaScript. Такой подход делает стили частью логики компонентов, что упрощает их управление и поддержку.
 
-Currently, two official plugins are available:
+# Что такое styled-components?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+styled-components позволяет создавать стилизованные компоненты с помощью тегов шаблонов (tagged template literals). Это обеспечивает изоляцию стилей и возможность динамической настройки.
 
-## Expanding the ESLint configuration
+## Как использовать Styled Components?
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Для стилизации компонента с использованием библиотеки `styled-components`:
+
+1. Установите библиотеку в проект:
+
+   ```sh
+   npm install styled-components
+   ```
+
+2. Перемещаем компонент Header в папку components и переименуем его обратно в Header.jsx. Модули стилей больше не используются, так как стили теперь создаются с помощью styled-components.
+```jsx
+import styled from 'styled-components';
+
+const HeaderStyled = styled.header`
+  background-color:rgb(70, 11, 172);
+  color: white;
+  padding: 5px;
+  text-align: center;
+`;
+
+function Header() {
+  return (
+    <HeaderStyled>
+      <h1>Mini-Blog</h1>
+    </HeaderStyled>
+  );
+}
+
+export default Header;
+```
+
+В этом примере стили для компонента `Header` задаются с помощью `styled.header`, что автоматически генерирует уникальный класс, применяемый к элементу. Стили интегрируются непосредственно в код компонента, и вы получаете все преимущества изоляции.
+
+## Преимущества и недостатки
+
+| Преимущества | Недостатки |
+|--------------|------------|
+| Полная изоляция стилей, что исключает конфликты. | Добавление CSS в JS может увеличивать размер файлов. |
+| Возможность динамически изменять стили через пропсы. | Может замедлять рендеринг в больших проектах. |
+| Логика и стили находятся в одном месте, что упрощает поддержку. | Требует установки библиотеки `styled-components`. |
+
+## Запуск проекта
+
+1. Перейдите в папку с проектом:
+
+   ```sh
+   cd <путь_к_проекту>
+   ```
+
+2. Установите зависимости:
+
+   ```sh
+   npm install
+   ```
+
+3. Запустите проект:
+
+   ```sh
+   npm run dev
+   ```

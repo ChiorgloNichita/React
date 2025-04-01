@@ -1,12 +1,44 @@
-# React + Vite
+# Стилизация компонентов с помощью SCSS  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SCSS — это мощное расширение CSS, которое добавляет новые возможности, такие как переменные, вложенные правила, миксины и многое другое. SCSS упрощает разработку и поддержку стилей, а после компиляции преобразуется в обычный CSS, совместимый с браузерами
 
-Currently, two official plugins are available:
+## Типы стилей  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Глобальные стили** — хранятся в одном файле (например, `global.scss`) и применяются ко всему проекту.  
+- **Локальные стили** — создаются для отдельных компонентов, что помогает избежать конфликтов и улучшает структуру кода.  
 
-## Expanding the ESLint configuration
+## Преимущества и недостатки  
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Преимущества | Недостатки |
+|-------------|-----------|
+| Упорядоченная структура кода. | Требуется предварительная настройка и компиляция. |
+| Поддержка переменных и миксинов. | Может привести к увеличению числа файлов в проекте. |
+| Удобная вложенность стилей. | Неиспользуемые стили могут попасть в итоговый CSS. |  
+
+## Запуск проекта  
+
+1. Установите SCSS в проект, используя команду:
+
+   ```sh
+   npm install sass
+   ```
+
+2. Создайте папку для стилей в директории `src`:
+
+   ```sh
+   mkdir src/styles
+   ```
+
+3. В папке `styles` создайте подкаталог `components` для хранения стилей отдельных компонентов:
+
+   ```sh
+   mkdir src/styles/components
+   ```
+
+4. После того как вы создали папки и настроили SCSS, можно запустить проект с помощью команды:
+
+```sh
+npm run dev
+```
+
+Эта команда запустит сервер разработки и будет следить за изменениями в файлах. Если все настроено правильно, ваш проект будет компилироваться, и изменения в SCSS файлах будут автоматически применяться в процессе работы приложения.

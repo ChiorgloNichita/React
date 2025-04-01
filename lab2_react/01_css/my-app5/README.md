@@ -1,12 +1,37 @@
-# React + Vite
+# Стилизация компонентов с использованием CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Применение CSS-файлов — один из наиболее распространённых способов стилизации компонентов в React. Этот метод позволяет структурировать код и упрощает управление стилями.
 
-Currently, two official plugins are available:
+## Виды стилей
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Глобальные стили** — объявляются в основном файле (например, `index.css`) и воздействуют на всё приложение.  
+- **Локальные стили** — создаются отдельно для каждого компонента и применяются исключительно в его пределах.
 
-## Expanding the ESLint configuration
+## Плюсы и минусы
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Достоинства | Недостатки |
+|-------------|-----------|
+| Легко подключается и используется. | Возможны конфликты стилей на глобальном уровне. |
+| Полная поддержка всех возможностей CSS. | Отсутствует автоматическая изоляция стилей. |
+| Не требует дополнительной настройки или инструментов. | В крупных проектах файлы стилей могут разрастаться. |
+| Отлично подходит для глобальных и базовых стилей. | Сложнее поддерживать код, если все стили находятся в одном файле. |
+
+## Запуск проекта
+
+1. Откройте терминал и перейдите в директорию проекта:
+
+   ```sh
+   cd <путь_к_проекту>
+   ```
+
+2. Установите необходимые зависимости:
+
+   ```sh
+   npm install
+   ```
+
+3. Запустите локальный сервер:
+
+   ```sh
+   npm run dev
+   ```

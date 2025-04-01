@@ -1,8 +1,16 @@
-export default function Header() {
+import { Button, Typography } from '@mui/material';
+
+function SimpleComponent() {
   return (
-    <header className="bg-blue-600 py-4">
-      <h1 className="text-white text-3xl text-center font-serif">Mini-Blog</h1>
-      <p className="text-lg font-sans">Welcome to the blog!</p>
-    </header>
+    <div>
+      <Typography variant="h6">
+        Welcome to the React Application!
+      </Typography>
+      <Button variant="contained" color="primary">
+        Click Me
+      </Button>
+    </div>
   );
 }
+
+export default SimpleComponent;

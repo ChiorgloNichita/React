@@ -1,12 +1,37 @@
-# React + Vite
+# Стилизация компонентов с помощью Tailwind CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Tailwind CSS** — это утилитарный CSS-фреймворк, который предлагает огромное количество классов для быстрой стилизации. Он основан на атомарном подходе, где каждый класс отвечает за одно CSS-свойство, например:
 
-Currently, two official plugins are available:
+- `text-center` — выравнивание текста по центру.
+- `p-4` — отступы по 1 рем.
+- `bg-blue-500` — фон синего цвета.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Этот подход позволяет вам оперативно создавать стильные и адаптивные интерфейсы без необходимости писать дополнительный CSS.
 
-## Expanding the ESLint configuration
+## Преимущества и недостатки
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Преимущества | Недостатки |
+|--------------|------------|
+| Быстрая и простая стилизация. | Увеличение размера итогового CSS. |
+| Атомарный подход облегчает написание стилей. | Требуется настройка и интеграция в проект. |
+| Большое количество готовых классов для разных задач. | Требуется время на изучение документации и синтаксиса. |
+
+## Запуск проекта
+
+1. Перейдите в папку с проектом:
+
+   ```sh
+   cd <путь_к_проекту>
+   ```
+
+2. Установите зависимости:
+
+   ```sh
+   npm install
+   ```
+
+3. Запустите проект:
+
+   ```sh
+   npm run dev
+   ```

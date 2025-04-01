@@ -1,12 +1,80 @@
-# React + Vite
+# Стилизация компонентов с помощью CSS Modules
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CSS модули — это современный способ стилизации компонентов в React, который помогает изолировать стили для каждого компонента, предотвращая их конфликт. Каждый класс в модуле получает уникальное имя, что особенно полезно в больших приложениях.
 
-Currently, two official plugins are available:
+# Что такое CSS модули?
+CSS модули работают как обычные CSS/SCSS файлы, но при этом имена классов внутри файлов становятся уникальными.
+Например, вместо .header будет создан уникальный класс .header__1s3d2, который исключает конфликты.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Как создать CSS модуль?
 
-## Expanding the ESLint configuration
+Для создания CSS модуля для компонента, например, `Header`:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Файл стилей должен иметь расширение `.module.scss`.** Например, `Header.module.scss`.
+2. **Разместите файл стилей в той же папке, где находится компонент.**
+
+### Структура файлов
+
+```
+src/
+├── components/
+│   ├── Header/
+│   │   ├── index.jsx
+│   │   ├── Header.module.scss
+```
+
+### Пример кода стилей:
+
+```scss
+// Header.module.scss
+.header {
+    background-color: #0e2e6f;
+    color: blue;
+    padding: 5px;
+    text-align: center;
+  }
+```
+
+### Пример кода компонента:
+
+```jsx
+// Header.jsx
+import React from 'react';
+import styles from './Header/Header.module.scss';
+
+export default function Header() {
+  return (
+    <header className={styles.header}>
+      <h1 className={styles.header__title}>Mini-Blog</h1>
+    </header>
+  );
+}
+```
+
+## Преимущества и недостатки
+
+| Преимущества | Недостатки |
+|--------------|------------|
+| Изоляция стилей предотвращает конфликты. | Необходимость вручную импортировать каждый файл стилей. |
+| Поддержка использования SCSS с модулями. | Может быть сложной для организации в большом проекте. |
+| Автоматическая генерация уникальных классов. | Структура файлов может стать запутанной. |
+
+## Запуск проекта
+
+1. Перейдите в каталог с проектом:
+
+   ```sh
+   cd <путь_к_проекту>
+   ```
+
+2. Установите зависимости:
+
+   ```sh
+   npm install
+   ```
+
+3. Запустите проект:
+
+   ```sh
+   npm run dev
+   ```
