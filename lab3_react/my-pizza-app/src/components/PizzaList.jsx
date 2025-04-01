@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import pizzaData from "../data/pizza.json";
 import PizzaCard from "./PizzaCard";
 import Search from "./Search";
+import "../styles/PizzaList.css"; 
 
 /**
  * Компонент для отображения списка пицц с фильтром по имени.

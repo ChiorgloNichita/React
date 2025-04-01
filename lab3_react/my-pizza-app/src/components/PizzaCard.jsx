@@ -25,22 +25,22 @@ function PizzaCard({ pizza }) {
 
   return (
     <div className="pizza-card">
-      <img src={pizza.image} alt={pizza.name} />
-      <h2>{pizza.name}</h2>
-      <p>{pizza.description}</p>
-      <p>{pizza.price} лей</p>
-      <div>
+      <img className="pizza-img" src={pizza.image} alt={pizza.name} />
+      <h2 className="pizza-title">{pizza.name}</h2>
+      <p className="pizza-description">{pizza.description}</p>
+      <p className="pizza-price">{pizza.price} лей</p>
+      <div className="size-buttons">
         {pizza.sizes.map((size) => (
           <button
             key={size}
             onClick={() => handleSizeChange(size)}
-            style={{ backgroundColor: selectedSize === size ? "lightblue" : "" }}
+            className={`size-btn ${selectedSize === size ? "selected" : ""}`}
           >
             {size} см
           </button>
         ))}
       </div>
-      <button>Добавить в корзину</button>
+      <button className="add-to-cart-btn">Добавить в корзину</button>
     </div>
   );
 }

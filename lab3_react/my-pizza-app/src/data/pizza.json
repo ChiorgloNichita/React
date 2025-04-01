@@ -16,6 +16,26 @@
       "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
       "category": "Мясная",
       "sizes": [30, 40, 50]
+    },
+    {
+      "id": 3,
+      "name": "Четыре сыра",
+      "description": "Соус, сыр Моцарелла, сыр Пармезан, сыр Горгонзола, сыр Чеддер",
+      "price": 280,
+      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "category": "Сырная",
+      "sizes": [30, 40, 50]
+    },
+    {
+      "id": 4,
+      "name": "Гавайская",
+      "description": "Соус, сыр, ананасы, курица",
+      "price": 270,
+      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "category": "Экзотическая",
+      "sizes": [30, 40, 50]
     }
+    
+    
   ]
   

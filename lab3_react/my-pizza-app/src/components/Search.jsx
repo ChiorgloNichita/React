@@ -1,3 +1,5 @@
+import '../styles/Search.css';
+
 /**
  * Компонент поиска для фильтрации списка пицц по названию.
  *
@@ -9,18 +11,18 @@
  * return <Search onSearch={handleSearch} />;
  */
 function Search({ onSearch }) {
-    const handleSearchChange = (e) => {
-      onSearch(e.target.value);
-    };
-  
-    return (
-      <input
-        type="text"
-        placeholder="Поиск..."
-        onChange={handleSearchChange}
-      />
-    );
-  }
-  
-  export default Search;
-  
+  const handleSearchChange = (e) => {
+    onSearch(e.target.value);
+  };
+
+  return (
+    <input
+      className="search-input"
+      type="text"
+      placeholder="Поиск..."
+      onChange={handleSearchChange}
+    />
+  );
+}
+
+export default Search;

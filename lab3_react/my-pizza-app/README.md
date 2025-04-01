@@ -18,11 +18,13 @@
 - **React** — для создания компонентного интерфейса.
 - **CSS** — для стилизации интерфейса.
 - **JSON** — для хранения данных о пиццах.
+- **Hooks (useState, useEffect)** — для управления состоянием и эффектах в компонентах.
 
 ## Структура проекта
 
-
-Footer.jsx
+# Footer.jsx — Компонент для отображения копирайта и ссылки на репозиторий на GitHub.
+Footer.jsx 
+```jsx
 /**
  * Компонент для отображения копирайта и ссылки на репозиторий на GitHub.
  *
@@ -32,7 +34,6 @@ Footer.jsx
  *   <Footer />
  * )
  */
- ```jsx
 import "../styles/Footer.css"; 
 function Footer() {
     return (
@@ -52,8 +53,9 @@ function Footer() {
   
   export default Footer;
   ```
-
+# Header.jsx — Компонент для отображения заголовка и навигации на сайте.
 Header.jsx
+ ```jsx
 /**
  * Компонент для отображения заголовка и навигации на сайте.
  *
@@ -63,7 +65,6 @@ Header.jsx
  *   <Header />
  * )
  */
-  ```jsx
 import "../styles/Header.css";
 function Header() {
     return (
@@ -80,8 +81,9 @@ function Header() {
   
 export default Header; 
  ```
-
+# PizzaCard.jsx — Компонент для отображения информации о пицце.
   PizzaCard.jsx
+  ```jsx
 import { useState } from "react";
 
 /**
@@ -100,7 +102,6 @@ import { useState } from "react";
  * const pizza = { name: "Маргарита", description: "Соус, сыр, помидоры", price: 200, sizes: [30, 40, 50], image: "url" };
  * return <PizzaCard pizza={pizza} />;
  */
-  ```jsx
 function PizzaCard({ pizza }) {
   const [selectedSize, setSelectedSize] = useState(pizza.sizes[0]);
 
@@ -132,12 +133,14 @@ function PizzaCard({ pizza }) {
 
 export default PizzaCard;
  ```
+ # PizzaList.jsx — Компонент для отображения списка пицц с фильтром по имени.
   ```jsx
 PizzaList.jsx
 import { useState, useEffect } from "react";
 import pizzaData from "../data/pizza.json";
 import PizzaCard from "./PizzaCard";
 import Search from "./Search";
+import "../styles/PizzaList.css"; 
 
 /**
  * Компонент для отображения списка пицц с фильтром по имени.
@@ -179,8 +182,10 @@ function PizzaList() {
 
 export default PizzaList;
  ```
-
+# Search.jsx — Компонент для фильтрации списка пицц по названию.
 Search.jsx
+ ```jsx
+ import '../styles/Search.css';
 /**
  * Компонент поиска для фильтрации списка пицц по названию.
  *
@@ -191,7 +196,6 @@ Search.jsx
  * @example
  * return <Search onSearch={handleSearch} />;
  */
-  ```jsx
 function Search({ onSearch }) {
     const handleSearchChange = (e) => {
       onSearch(e.target.value);
@@ -208,7 +212,7 @@ function Search({ onSearch }) {
   
   export default Search;
    ```
-
+# Slider.jsx — Компонент для отображения слайдера с актуальными акциями.
 Slider.jsx
  ```jsx
 import { useState, useEffect } from "react";
@@ -270,56 +274,9 @@ function Slider() {
 
 export default Slider;
  ```
-
-src/Styles/Footer.css
- ```jsx
-.footer {
-    background-color: #f1f1f1;
-    padding: 15px;
-    text-align: center;
-    margin-top: 50px;
-    border-top: 2px solid #ccc;
-  }
-  
-  .text {
-    margin: 0 0 5px 0;
-  }
-  
-  .footer-link {
-    text-decoration: none;
-    color: #0077cc;
-    font-weight: bold;
-  }
-   ```
-
-src/styles/Header.css
- ```jsx
-.header {
-    background-color: #ffcc00;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 4px solid #e89b00;
-  }
-  
-  .title {
-    margin: 0;
-  }
-  
-  .nav {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .link {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-  }
- ```  
- ```jsx
-src/data/pizza.json
+ # Структура данных:
+Данные о пиццах хранятся в файле src/data/pizza.json, который имеет следующий формат:
+   ```jsx
 [
     {
       "id": 1,
@@ -342,8 +299,138 @@ src/data/pizza.json
   ]
    ```
 
-App.jsx
+
+
+src/Styles/Footer.css
  ```jsx
+/**
+ * Стили для футера (нижней части страницы).
+ * Используется фоновый цвет, отступы, выравнивание текста и добавление тени.
+ *
+ * @class .footer
+ */
+ .footer {
+  background-color: hsl(48, 100%, 50%); /* Основной цвет фона */
+  padding: 20px; /* Отступы вокруг содержимого */
+  text-align: center; /* Выравнивание текста по центру */
+  margin-top: 50px; /* Отступ сверху */
+  border-top: 2px solid #ccc; /* Верхняя граница для разделения */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для футера */
+}
+
+/**
+ * Стили для текста в футере.
+ * Отступ снизу.
+ *
+ * @class .text
+ */
+.text {
+  margin: 0 0 5px 0; /* Отступ снизу */
+}
+
+/**
+ * Стили для ссылки в футере.
+ * Добавляется стилизация для ссылок с плавным переходом.
+ *
+ * @class .footer-link
+ */
+.footer-link {
+  text-decoration: none; /* Убирает подчеркивание с ссылки */
+  color: #0077cc; /* Цвет ссылки */
+  font-weight: bold; /* Жирный шрифт для ссылки */
+  transition: color 0.3s; /* Плавное изменение цвета */
+}
+
+/**
+ * Стили для состояния наведения на ссылку в футере.
+ * Меняется цвет на более темный оттенок синего при наведении.
+ *
+ * @class .footer-link:hover
+ */
+.footer-link:hover {
+  color: #005fa3; /* Темный синий при наведении */
+}
+
+   ```
+
+src/styles/Header.css
+ ```jsx
+/**
+ * Стили для шапки сайта (header).
+ * Используются фоновый цвет, отступы, выравнивание элементов и тень.
+ *
+ * @class .header
+ */
+.header {
+  background-color: hsl(48, 100%, 50%); /* Основной цвет фона */
+  padding: 20px; /* Отступы вокруг содержимого */
+  display: flex; /* Используется flexbox для выравнивания элементов */
+  justify-content: space-between; /* Распределение элементов по краям */
+  align-items: center; /* Вертикальное выравнивание по центру */
+  border-bottom: 4px solid #e89b00; /* Нижняя граница для разделения */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+  width: 100%;  /* Ширина шапки теперь будет 100% */
+  margin: 0;  /* Убираем любые внешние отступы */
+}
+
+/**
+ * Стили для заголовка на шапке (title).
+ * Устанавливаются отступы, размер шрифта, вес шрифта и цвет текста.
+ *
+ * @class .title
+ */
+.title {
+  margin: 0; /* Убираются отступы вокруг заголовка */
+  font-size: 1.8rem; /* Размер шрифта заголовка */
+  font-weight: bold; /* Жирный шрифт */
+  color: #333; /* Цвет текста */
+}
+
+/**
+ * Стили для навигационного меню.
+ * Элементы меню распределяются с использованием flexbox.
+ *
+ * @class .nav
+ */
+.nav {
+  display: flex; /* Используется flexbox для размещения элементов */
+  gap: 20px; /* Пробел между элементами */
+}
+
+/**
+ * Стили для ссылок в навигации.
+ * Убирается подчеркивание, задаются цвет и жирный шрифт.
+ * Плавное изменение цвета при наведении.
+ *
+ * @class .link
+ */
+.link {
+  text-decoration: none; /* Убирает подчеркивание с ссылок */
+  color: #333; /* Цвет ссылок */
+  font-weight: bold; /* Жирный шрифт для ссылок */
+  transition: color 0.3s; /* Плавное изменение цвета при наведении */
+}
+
+/**
+ * Стили для состояния наведения на ссылку.
+ * Цвет ссылки меняется на оранжевый при наведении.
+ *
+ * @class .link:hover
+ */
+.link:hover {
+  color: #ff6600; /* Оранжевый цвет при наведении */
+}
+
+src/styles/PizzaList.css
+src/styles/PizzaCard.css
+src/styles/Search.css
+
+В них также я стилизовал для удобного интерфейса
+
+
+App.jsx
+
+```jsx
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Slider from "./components/Slider";
@@ -361,7 +448,7 @@ function App() {
 }
 
 export default App;
- ```
+```
 
 main.jsx
  ```jsx
@@ -390,4 +477,3 @@ createRoot(document.getElementById('root')).render(
 ### 3. С помощью какого метода можно рендерить списки элементов в React?
 
 Для рендеринга списка используется метод `.map()`. Этот метод перебирает элементы массива и возвращает новый массив с компонентами, которые можно отобразить.
-
