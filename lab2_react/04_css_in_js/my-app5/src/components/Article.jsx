@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styles from './Article/Article.module.scss';
-
 export default function Article({title, text}) {
     return (
       <article className={styles.article}>

@@ -1,19 +1,22 @@
-import Article from "./Article";
+import Article from './Article';
 
 export default function ArticleList() {
   const articles = [
-    { title: "День в универе", text: "Сегодня был плохой день" },
-    { title: "День дома", text: "Сегодня был хороший день" },
-    { title: "День на море", text: "Сегодня был отличный день" },
-    { title: "День в школе", text: "Сегодня был ужасный день" },
+    { title: "Утро", text: "Проспал будильник" },
+    { title: "День", text: "Обед был вкусным" },
+    { title: "Вечер", text: "Просмотрел фильм" },
+    { title: "Ночь", text: "Заснул поздно" },
   ];
 
-     return (
-       <main>
-         {articles.map((article, index) => (
-           <Article key={index} title={article.title} text={article.text} />
-         ))}
-       </main>
-     );
-   }
-  
+  return (
+    <>
+      {articles.map((article, index) => (
+        <Article
+          key={index}
+          title={article.title}
+          text={article.text}
+        />
+      ))}
+    </>
+  );
+}
