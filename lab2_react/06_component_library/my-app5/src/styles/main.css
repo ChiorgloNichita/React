@@ -1,8 +1,0 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&family=Lora:wght@400;700&display=swap');
-@import 'tailwindcss';
-
-@theme {
-  --font-serif: 'Lora', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-sans: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-}
