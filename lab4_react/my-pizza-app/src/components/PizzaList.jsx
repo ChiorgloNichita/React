@@ -1,0 +1,40 @@
+// src/components/PizzaList.jsx
+import { useState, useEffect } from "react";
+import pizzaData from "../data/pizza.json";
+import PizzaCard from "./PizzaCard";
+import Search from "./Search";
+import "../styles/PizzaList.css";
+
+/**
+ * Компонент для отображения списка пицц с фильтром по имени.
+ */
+function PizzaList({ addToCart }) {
+  const [pizzas, setPizzas] = useState([]);
+  const [filteredPizzas, setFilteredPizzas] = useState([]);
+
+  useEffect(() => {
+    setPizzas(pizzaData);
+    setFilteredPizzas(pizzaData);
+  }, []);
+
+  const handleSearch = (query) => {
+    const lower = query.toLowerCase();
+    const filtered = pizzas.filter((pizza) =>
+      pizza.name.toLowerCase().includes(lower)
+    );
+    setFilteredPizzas(filtered);
+  };
+
+  return (
+    <div>
+      <Search onSearch={handleSearch} />
+      <div className="pizza-list">
+        {filteredPizzas.map((pizza) => (
+          <PizzaCard key={pizza.id} pizza={pizza} addToCart={addToCart} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default PizzaList;

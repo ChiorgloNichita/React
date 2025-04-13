@@ -1,0 +1,41 @@
+[
+    {
+      "id": 1,
+      "name": "Маргарита",
+      "description": "Соус, сыр, помидоры",
+      "price": 200,
+      "image": "https://joinposter.com/upload/pos_cdb_359454/menu/product_1723216716_32_original.jpeg",
+      "category": "Сырная",
+      "sizes": [30, 40, 50]
+    },
+    {
+      "id": 2,
+      "name": "Пепперони",
+      "description": "Соус, сыр, пепперони",
+      "price": 250,
+      "image": "https://joinposter.com/upload/pos_cdb_359454/menu/product_1723213701_38_original.jpeg",
+      "category": "Мясная",
+      "sizes": [30, 40, 50]
+    },
+    {
+      "id": 3,
+      "name": "Четыре сыра",
+      "description": "Соус, сыр Моцарелла, сыр Пармезан, сыр Горгонзола, сыр Чеддер",
+      "price": 280,
+      "image": "https://joinposter.com/upload/pos_cdb_359454/menu/product_1723225556_23_original.jpeg",
+      "category": "Сырная",
+      "sizes": [30, 40, 50]
+    },
+    {
+      "id": 4,
+      "name": "Гавайская",
+      "description": "Соус, сыр, ананасы, курица",
+      "price": 270,
+      "image": "https://joinposter.com/upload/pos_cdb_359454/menu/product_1723231282_24_original.jpeg",
+      "category": "Экзотическая",
+      "sizes": [30, 40, 50]
+    }
+    
+    
+  ]
+  
