@@ -1,21 +1,31 @@
-// ✅ PizzaCard.jsx (обновлённый)
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../store/cart/slice";
 import "../styles/PizzaCard.css";
 
 const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
 
-function PizzaCard({ pizza }) {
-  const dispatch = useDispatch();
+/**
+ * Компонент карточки пиццы.
+ * Отображает информацию, кнопки добавления в корзину, редактирования и удаления.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.pizza - Объект пиццы
+ * @param {Function} [props.addToCart] - Функция добавления в корзину
+ * @returns {JSX.Element}
+ */
+function PizzaCard({ pizza, addToCart }) {
   const navigate = useNavigate();
   const defaultSizes = pizza.sizes || [25, 30, 35];
   const [selectedSize, setSelectedSize] = useState(defaultSizes[0]);
 
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  };
+
   const handleAddToCart = () => {
-    dispatch(addToCart(pizza));
+    addToCart?.(pizza);
   };
 
   const handleDelete = async () => {
@@ -29,7 +39,10 @@ function PizzaCard({ pizza }) {
     }
   };
 
-  const handleEdit = () => navigate(`/edit/${pizza.id}`);
+  const handleEdit = () => {
+    if (!pizza.id) return;
+    navigate(`/edit/${pizza.id}`);
+  };
 
   return (
     <div className="pizza-card">
@@ -43,7 +56,7 @@ function PizzaCard({ pizza }) {
         {defaultSizes.map((size) => (
           <button
             key={size}
-            onClick={() => setSelectedSize(size)}
+            onClick={() => handleSizeChange(size)}
             className={`size-btn ${selectedSize === size ? "selected" : ""}`}
           >
             {size} см
