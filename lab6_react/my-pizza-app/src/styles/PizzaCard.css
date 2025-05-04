@@ -1,0 +1,104 @@
+/**
+ * Стили для карточки пиццы.
+ * Карточка имеет фиксированный размер, с тенью и эффектом при наведении.
+ *
+ * @class .pizza-card
+ */
+ .pizza-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px; /* Карточки фиксированного размера */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 20px;
+}
+
+/**
+ * Эффект при наведении на карточку пиццы.
+ * Карточка поднимается и меняет тень.
+ *
+ * @class .pizza-card:hover
+ */
+.pizza-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/**
+ * Стили для заголовка в карточке пиццы.
+ * Заголовок выделен жирным шрифтом, с отступами и цветом.
+ *
+ * @class .pizza-card h2
+ */
+.pizza-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #3e2723;
+  font-weight: bold;
+}
+
+/**
+ * Стили для описания пиццы в карточке.
+ * Текст описания с цветом и отступами.
+ *
+ * @class .pizza-card p
+ */
+.pizza-card p {
+  font-size: 1rem;
+  color: #5d4037;
+  margin: 10px 0;
+}
+
+/**
+ * Стили для изображения пиццы в карточке.
+ * Изображение растягивается по ширине и имеет фиксированную высоту.
+ *
+ * @class .pizza-card img
+ */
+.pizza-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/**
+ * Стили для кнопки в карточке пиццы.
+ * Кнопка имеет фоновый цвет и эффекты при наведении и активации.
+ *
+ * @class .pizza-card button
+ */
+.pizza-card button {
+  background-color: #6d4c41;
+  color: white;
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/**
+ * Эффект при наведении на кнопку.
+ * Кнопка увеличивается в масштабе и меняет цвет фона.
+ *
+ * @class .pizza-card button:hover
+ */
+.pizza-card button:hover {
+  background-color: #5d4037;
+  transform: scale(1.05);
+}
+
+/**
+ * Эффект при активном состоянии кнопки.
+ * Кнопка уменьшается в масштабе.
+ *
+ * @class .pizza-card button:active
+ */
+.pizza-card button:active {
+  transform: scale(0.95);
+}

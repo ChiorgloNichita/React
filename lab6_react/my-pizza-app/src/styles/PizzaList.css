@@ -1,0 +1,168 @@
+/**
+ * Стили для контейнера списка пицц.
+ * Используется flexbox для расположения элементов в строку с переходом на новую строку при необходимости.
+ *
+ * @class .pizza-list
+ */
+ .pizza-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  margin: 20px;
+  flex-direction: row;
+}
+
+/**
+ * Стили для карточек пиццы в списке.
+ * Каждая карточка имеет фиксированный размер и тень.
+ *
+ * @class .pizza-list .pizza-card
+ */
+.pizza-list .pizza-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/**
+ * Эффект при наведении на карточку пиццы.
+ * Карточка немного поднимается, меняется тень.
+ *
+ * @class .pizza-list .pizza-card:hover
+ */
+.pizza-list .pizza-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/**
+ * Стили для заголовка в карточке пиццы.
+ *
+ * @class .pizza-list h2
+ */
+.pizza-list h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #3e2723;
+  font-weight: bold;
+}
+
+/**
+ * Стили для описания пиццы в карточке.
+ *
+ * @class .pizza-list p
+ */
+.pizza-list p {
+  font-size: 1rem;
+  color: #5d4037;
+  margin: 10px 0;
+}
+
+/**
+ * Стили для изображения пиццы.
+ * Изображение заполняет карточку по ширине, с фиксированной высотой.
+ *
+ * @class .pizza-list img
+ */
+ .pizza-list img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain; 
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+
+/**
+ * Стили для кнопки в карточке пиццы.
+ * Кнопка меняет цвет и масштаб при наведении и активном состоянии.
+ *
+ * @class .pizza-list button
+ */
+.pizza-list button {
+  background-color: #6d4c41;
+  color: white;
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/**
+ * Эффект при наведении на кнопку.
+ * Кнопка увеличивается в масштабе.
+ *
+ * @class .pizza-list button:hover
+ */
+.pizza-list button:hover {
+  background-color: #5d4037;
+  transform: scale(1.05);
+}
+
+/**
+ * Эффект при активном состоянии кнопки.
+ * Кнопка уменьшается в масштабе.
+ *
+ * @class .pizza-list button:active
+ */
+.pizza-list button:active {
+  transform: scale(0.95);
+}
+
+/**
+ * Стили для контейнера поиска.
+ * Поиск центрирован и имеет отступы.
+ *
+ * @class .search-container
+ */
+.search-container {
+  margin: 20px;
+  text-align: center;
+}
+
+/**
+ * Стили для поля ввода в контейнере поиска.
+ * Поле ввода имеет отступы, размер шрифта и рамку.
+ *
+ * @class .search-container input
+ */
+.search-container input {
+  padding: 10px;
+  font-size: 1rem;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/**
+ * Стили для кнопки поиска.
+ * Кнопка имеет фоновый цвет и эффект при наведении.
+ *
+ * @class .search-container button
+ */
+.search-container button {
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #6d4c41;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/**
+ * Эффект при наведении на кнопку поиска.
+ * Кнопка изменяет цвет при наведении.
+ *
+ * @class .search-container button:hover
+ */
+.search-container button:hover {
+  background-color: #5d4037;
+}
