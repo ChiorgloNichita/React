@@ -1,0 +1,9 @@
+/* Общий контейнер контента */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: calc(100vh - 160px); /* чтобы футер не налезал */
+    color: white;
+  }
+  

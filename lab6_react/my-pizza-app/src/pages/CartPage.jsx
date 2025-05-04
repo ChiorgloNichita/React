@@ -1,27 +1,42 @@
+// src/pages/CartPage.jsx
+import { useDispatch, useSelector } from "react-redux";
+import { selectCart } from "../store/cart/actions";
+import { updateQuantity, removeFromCart } from "../store/cart/slice";
+
 /**
- * Страница корзины.
- * Отображает список пицц, добавленных в корзину, с возможностью удаления.
+ * Страница отображения корзины.
+ * Позволяет изменять количество и удалять товары.
  *
  * @component
- * @param {Object} props
- * @param {Array} props.cart - Список пицц в корзине
- * @param {Function} props.removeFromCart - Удаляет пиццу из корзины по ID
- * @returns {JSX.Element}
  */
-function CartPage({ cart, removeFromCart }) {
+function CartPage() {
+  const dispatch = useDispatch();
+  const cart = useSelector(selectCart);
+
+  const handleUpdate = (id, quantity) => {
+    dispatch(updateQuantity({ id, quantity }));
+  };
+
+  const handleRemove = (id) => dispatch(removeFromCart(id));
+
   return (
     <div>
       <h2>Корзина</h2>
-      {cart.length === 0 ? (
+      {cart.items.length === 0 ? (
         <p>Корзина пуста.</p>
       ) : (
         <div>
-          {cart.map((pizza) => (
+          {cart.items.map((pizza) => (
             <div key={pizza.id}>
               <h3>{pizza.name}</h3>
               <p>{pizza.description}</p>
               <p>{pizza.price} лей</p>
-              <button onClick={() => removeFromCart(pizza.id)}>Удалить</button>
+              <div>
+                <button onClick={() => handleUpdate(pizza.id, pizza.quantity - 1)}>-</button>
+                <span style={{ margin: '0 10px' }}>{pizza.quantity}</span>
+                <button onClick={() => handleUpdate(pizza.id, pizza.quantity + 1)}>+</button>
+                <button onClick={() => handleRemove(pizza.id)}>Удалить</button>
+              </div>
             </div>
           ))}
         </div>

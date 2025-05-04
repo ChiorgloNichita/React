@@ -1,22 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cart/slice";
 import "../styles/PizzaCard.css";
 
 const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
 
 /**
  * Компонент карточки пиццы.
- * Отображает информацию, кнопки добавления в корзину, редактирования и удаления.
  *
- * @component
  * @param {Object} props
- * @param {Object} props.pizza - Объект пиццы
- * @param {Function} [props.addToCart] - Функция добавления в корзину
+ * @param {Object} props.pizza - Информация о пицце
  * @returns {JSX.Element}
  */
-function PizzaCard({ pizza, addToCart }) {
+function PizzaCard({ pizza }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const defaultSizes = pizza.sizes || [25, 30, 35];
   const [selectedSize, setSelectedSize] = useState(defaultSizes[0]);
 
@@ -25,7 +25,7 @@ function PizzaCard({ pizza, addToCart }) {
   };
 
   const handleAddToCart = () => {
-    addToCart?.(pizza);
+    dispatch(addToCart({ ...pizza, selectedSize }));
   };
 
   const handleDelete = async () => {
@@ -40,7 +40,6 @@ function PizzaCard({ pizza, addToCart }) {
   };
 
   const handleEdit = () => {
-    if (!pizza.id) return;
     navigate(`/edit/${pizza.id}`);
   };
 
@@ -52,6 +51,7 @@ function PizzaCard({ pizza, addToCart }) {
       </Link>
       <p>{pizza.description}</p>
       <p>{pizza.price} лей</p>
+
       <div className="size-buttons">
         {defaultSizes.map((size) => (
           <button
@@ -63,8 +63,10 @@ function PizzaCard({ pizza, addToCart }) {
           </button>
         ))}
       </div>
+
       <button onClick={handleAddToCart}>Добавить в корзину</button>
-      <div>
+
+      <div className="pizza-actions">
         <button onClick={handleEdit}>✏️ Редактировать</button>
         <button onClick={handleDelete}>🗑️ Удалить</button>
       </div>

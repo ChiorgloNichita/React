@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createProduct } from "../store/products/thunks";
 
 const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
 
 /**
  * Компонент формы добавления или редактирования пиццы.
- * Реализует валидацию и отправку данных на mockapi.
+ * При добавлении используется Redux (createAsyncThunk).
  *
  * @component
  * @returns {JSX.Element}
  */
 function ProductForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { id } = useParams();
   const isEditMode = Boolean(id);
 
@@ -25,11 +28,10 @@ function ProductForm() {
   });
 
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(true); // показываем загрузку изначально
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (isEditMode && id) {
-      // Для редактирования — задержка и загрузка данных
       setTimeout(() => {
         axios
           .get(`${API_URL}/${id}`)
@@ -38,10 +40,7 @@ function ProductForm() {
           .finally(() => setLoading(false));
       }, 1000);
     } else {
-      // Для добавления — просто задержка 1 секунда
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+      setTimeout(() => setLoading(false), 1000);
     }
   }, [id]);
 
@@ -67,7 +66,7 @@ function ProductForm() {
       if (isEditMode) {
         await axios.put(`${API_URL}/${id}`, form);
       } else {
-        await axios.post(API_URL, form);
+        await dispatch(createProduct(form)); // теперь через Redux
       }
       navigate("/");
     } catch (error) {
