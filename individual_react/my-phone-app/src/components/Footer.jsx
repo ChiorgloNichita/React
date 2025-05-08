@@ -1,6 +1,13 @@
 // src/components/Footer.jsx
 import "../styles/Footer.css";
 
+/**
+ * Компонент подвала сайта.
+ * Отображает информацию о копирайте и ссылку на GitHub.
+ *
+ * @component
+ * @returns {JSX.Element} Элемент футера
+ */
 function Footer() {
   return (
     <footer className="footer">

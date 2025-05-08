@@ -1,11 +1,11 @@
-.pizza-list {
+.phone-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
   padding: 20px 0;
 }
 
-.pizza-card {
+.phone-card {
   background-color: #fff;
   border-radius: 16px;
   padding: 20px;
@@ -15,29 +15,30 @@
   transition: 0.3s ease all;
 }
 
-.pizza-card:hover {
+.phone-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
-.pizza-card h2 {
+.phone-card h2 {
   font-size: 1.4rem;
   color: #3e2723;
   margin: 12px 0 6px;
 }
 
-.pizza-card p {
+.phone-card p {
   color: #555;
   margin: 6px 0;
 }
 
-.pizza-card img {
+.phone-card img {
   width: 100%;
   height: 220px;
   object-fit: contain;
   border-radius: 12px;
 }
 
+/* Размеры памяти */
 .size-buttons {
   display: flex;
   gap: 10px;
@@ -46,10 +47,18 @@
 
 .size-btn {
   padding: 6px 12px;
-  border: 1px solid #ccc;
-  background-color: white;
+  border: 1px solid #aaa;
+  background-color: #f9f9f9;
   border-radius: 6px;
   cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.size-btn:hover {
+  background-color: #ececec;
 }
 
 .size-btn.selected {
@@ -59,6 +68,7 @@
   border-color: #4caf50;
 }
 
+/* Кнопки управления */
 .button-group {
   display: flex;
   gap: 10px;
@@ -95,6 +105,6 @@ button:hover {
   transform: scale(1.05);
 }
 
-.pizza-list-wrapper {
+.phone-list-wrapper {
   width: 100%;
 }

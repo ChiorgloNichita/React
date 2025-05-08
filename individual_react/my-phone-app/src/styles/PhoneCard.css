@@ -1,4 +1,4 @@
-.pizza-card {
+.phone-card {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
@@ -11,25 +11,25 @@
   justify-content: space-between;
 }
 
-.pizza-card:hover {
+.phone-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.pizza-card h2 {
+.phone-card h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
   color: #3e2723;
   font-weight: bold;
 }
 
-.pizza-card p {
+.phone-card p {
   font-size: 1rem;
   color: #5d4037;
   margin: 10px 0;
 }
 
-.pizza-card img {
+.phone-card img {
   width: 100%;
   height: 200px;
   object-fit: contain;
@@ -38,14 +38,14 @@
 }
 
 /* Группа кнопок */
-.pizza-card .button-group {
+.phone-card .button-group {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
 }
 
-.pizza-card button {
+.phone-card button {
   flex: 1;
   padding: 8px 12px;
   border: none;
@@ -56,38 +56,38 @@
 }
 
 /* Основная кнопка */
-.pizza-card .btn-primary {
+.phone-card .btn-primary {
   background-color: #4caf50;
   color: white;
 }
 
-.pizza-card .btn-primary:hover {
+.phone-card .btn-primary:hover {
   background-color: #388e3c;
   transform: scale(1.05);
 }
 
 /* Кнопка редактирования */
-.pizza-card .btn-edit {
+.phone-card .btn-edit {
   background-color: #ffa000;
   color: white;
 }
 
-.pizza-card .btn-edit:hover {
+.phone-card .btn-edit:hover {
   background-color: #fb8c00;
   transform: scale(1.05);
 }
 
 /* Кнопка удаления */
-.pizza-card .btn-delete {
+.phone-card .btn-delete {
   background-color: #e53935;
   color: white;
 }
 
-.pizza-card .btn-delete:hover {
+.phone-card .btn-delete:hover {
   background-color: #c62828;
   transform: scale(1.05);
 }
 
-.pizza-card button:active {
+.phone-card button:active {
   transform: scale(0.95);
 }

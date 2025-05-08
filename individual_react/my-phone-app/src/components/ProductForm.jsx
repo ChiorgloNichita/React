@@ -100,7 +100,7 @@ function ProductForm() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="product-form">
-        <h2>{isEditMode ? "Редактировать пиццу" : "Добавить пиццу"}</h2>
+        <h2>{isEditMode ? "Редактировать телефон" : "Добавить телефон"}</h2>
 
         <input
           type="text"

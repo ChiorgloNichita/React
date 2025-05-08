@@ -14,8 +14,8 @@ function Header() {
     <header className="header">
       <div className="header-container">
         <h1 className="title">
-          <span role="img" aria-label="pizza" style={{ fontSize: "1.8rem" }}>🍕</span>
-          Онлайн-Пиццерия
+        <span role="img" aria-label="phone" style={{ fontSize: "1.8rem" }}>📱</span>
+          Магазин-телефонов
         </h1>
         <nav className="nav">
           <NavLink

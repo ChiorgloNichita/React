@@ -1,0 +1,32 @@
+/* Основной контейнер подвала */
+.footer {
+  background-color: #1e1e1e; /* Тёмный фон */
+  color: white; /* Белый текст */
+  text-align: center;
+  padding: 20px 10px; /* Внутренние отступы */
+  margin-top: 50px; /* Отступ сверху */
+  font-size: 0.95rem; /* Размер шрифта */
+}
+
+/* Стили ссылок внутри футера */
+.footer a {
+  color: #4caf50; /* Зелёный цвет */
+  text-decoration: none; /* Без подчеркивания */
+  font-weight: bold;
+  margin-left: 10px; /* Отступ между ссылками */
+}
+
+/* Эффект при наведении на ссылку */
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Внутренний контейнер для выравнивания содержимого по центру */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between; /* Пространство между элементами */
+  align-items: center; /* Вертикальное выравнивание */
+}

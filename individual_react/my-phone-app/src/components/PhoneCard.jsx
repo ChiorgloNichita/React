@@ -1,30 +1,30 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import "../styles/PizzaCard.css";
+import "../styles/PhoneCard.css"; // можно переименовать в PhoneCard.css позже
 
 const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
 
 /**
- * Карточка одной пиццы.
+ * Карточка одного телефона.
  *
  * @component
  * @param {Object} props
- * @param {Object} props.pizza - объект пиццы
+ * @param {Object} props.phone - объект телефона
  * @param {Function} props.onAdd - функция добавления в корзину
  * @returns {JSX.Element}
  */
-function PizzaCard({ pizza, onAdd }) {
+function PhoneCard({ phone, onAdd }) {
   const navigate = useNavigate();
-  const defaultSizes = pizza.sizes || [25, 30, 35];
+  const defaultSizes = phone.sizes || ["64 ГБ", "128 ГБ", "256 ГБ"];
   const [selectedSize, setSelectedSize] = useState(defaultSizes[0]);
 
   const handleSizeChange = (size) => setSelectedSize(size);
 
   const handleDelete = async () => {
-    if (window.confirm(`Удалить "${pizza.name}"?`)) {
+    if (window.confirm(`Удалить "${phone.name}"?`)) {
       try {
-        await axios.delete(`${API_URL}/${pizza.id}`);
+        await axios.delete(`${API_URL}/${phone.id}`);
         window.location.reload();
       } catch (error) {
         console.error("Ошибка при удалении:", error);
@@ -33,17 +33,17 @@ function PizzaCard({ pizza, onAdd }) {
   };
 
   const handleEdit = () => {
-    if (pizza.id) navigate(`/edit/${pizza.id}`);
+    if (phone.id) navigate(`/edit/${phone.id}`);
   };
 
   return (
-    <div className="pizza-card">
-      <Link to={`/product/${pizza.id}`}>
-        <img className="pizza-img" src={pizza.image} alt={pizza.name} />
-        <h2 className="pizza-title">{pizza.name}</h2>
+    <div className="phone-card">
+      <Link to={`/product/${phone.id}`}>
+        <img className="phone-img" src={phone.image} alt={phone.name} />
+        <h2 className="phone-title">{phone.name}</h2>
       </Link>
-      <p>{pizza.description}</p>
-      <p>{pizza.price} лей</p>
+      <p>{phone.description}</p>
+      <p>{phone.price} лей</p>
 
       <div className="size-buttons">
         {defaultSizes.map((size) => (
@@ -52,7 +52,7 @@ function PizzaCard({ pizza, onAdd }) {
             onClick={() => handleSizeChange(size)}
             className={`size-btn ${selectedSize === size ? "selected" : ""}`}
           >
-            {size} см
+            {size}
           </button>
         ))}
       </div>
@@ -72,4 +72,4 @@ function PizzaCard({ pizza, onAdd }) {
   );
 }
 
-export default PizzaCard;
+export default PhoneCard;

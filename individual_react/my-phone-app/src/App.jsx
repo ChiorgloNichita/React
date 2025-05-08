@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout"; // путь у тебя правильный
-import PizzaList from "./components/PizzaList";
+import PizzaList from "./components/PhoneList";
 import AboutPage from "./pages/AboutPage";
 import CartPage from "./pages/CartPage";
 import ProductPage from "./pages/ProductPage";
