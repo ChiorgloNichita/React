@@ -6,37 +6,37 @@ import NotFoundPage from "./NotFoundPage";
 const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
 
 /**
- * Страница отдельной пиццы.
+ * Страница отдельного телефона.
  * Загружает информацию по ID и отображает карточку товара.
  *
  * @component
  * @param {Object} props
- * @param {Function} [props.addToCart] - Функция добавления пиццы в корзину
+ * @param {Function} [props.addToCart] - Функция добавления телефона в корзину
  * @returns {JSX.Element}
  */
 function ProductPage({ addToCart }) {
   const { id } = useParams();
-  const [pizza, setPizza] = useState(null);
+  const [phone, setPhone] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`${API_URL}/${id}`)
-      .then((res) => setPizza(res.data))
-      .catch(() => setPizza(null))
+      .then((res) => setPhone(res.data))
+      .catch(() => setPhone(null))
       .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) return <p>Загрузка...</p>;
-  if (!pizza) return <NotFoundPage />;
+  if (!phone) return <NotFoundPage />;
 
   return (
     <div>
-      <h2>{pizza.name}</h2>
-      <img src={pizza.image} alt={pizza.name} style={{ width: "300px" }} />
-      <p>{pizza.description}</p>
-      <p>Цена: {pizza.price} лей</p>
-      <button onClick={() => addToCart?.(pizza)}>Добавить в корзину</button>
+      <h2>{phone.name}</h2>
+      <img src={phone.image} alt={phone.name} style={{ width: "300px" }} />
+      <p>{phone.description}</p>
+      <p>Цена: {phone.price} лей</p>
+      <button onClick={() => addToCart?.(phone)}>Добавить в корзину</button>
     </div>
   );
 }

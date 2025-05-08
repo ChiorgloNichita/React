@@ -6,11 +6,12 @@ import { createSlice } from "@reduxjs/toolkit";
  */
 const loadCart = () => {
   try {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : { items: [], totalQuantity: 0 };
-  } catch {
-    return { items: [], totalQuantity: 0 };
-  }
+    const saved = JSON.parse(localStorage.getItem("cart"));
+    if (saved && Array.isArray(saved.items)) {
+      return saved;
+    }
+  } catch (e) {}
+  return { items: [], totalQuantity: 0 };
 };
 
 /**
@@ -28,9 +29,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     /**
-     * Добавляет товар в корзину или увеличивает количество.
-     * @param {Object} state
-     * @param {Object} action
+     * Добавляет товар или увеличивает количество.
      */
     addToCart(state, action) {
       const item = action.payload;
@@ -45,9 +44,7 @@ const cartSlice = createSlice({
     },
 
     /**
-     * Удаляет товар из корзины по ID.
-     * @param {Object} state
-     * @param {Object} action
+     * Удаляет товар по ID.
      */
     removeFromCart(state, action) {
       const id = action.payload;
@@ -60,9 +57,7 @@ const cartSlice = createSlice({
     },
 
     /**
-     * Обновляет количество товара в корзине.
-     * @param {Object} state
-     * @param {Object} action
+     * Обновляет количество конкретного товара.
      */
     updateQuantity(state, action) {
       const { id, quantity } = action.payload;

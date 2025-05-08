@@ -44,10 +44,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Главное — полная высота и flex-верстка для закрепления футера */
 html, body, #root {
   height: 100%;
   margin: 0;
+  padding: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -58,9 +59,12 @@ html, body, #root {
   flex-direction: column;
 }
 
-main.container {
-  flex: 1;
-  padding: 20px;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: light) {
@@ -74,36 +78,4 @@ main.container {
   button {
     background-color: #f9f9f9;
   }
-}
-* {
-  box-sizing: border-box;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-html, body, #root {
-  width: 100%;
-}
-
-main.container {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-* {
-  box-sizing: border-box;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-html, body, #root {
-  width: 100%;
-}
-
-main.container {
-  max-width: 100%;
-  overflow-x: hidden;
 }

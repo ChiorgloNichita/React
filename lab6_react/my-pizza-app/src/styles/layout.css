@@ -1,9 +1,17 @@
-/* Общий контейнер контента */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    min-height: calc(100vh - 160px); /* чтобы футер не налезал */
-    color: white;
-  }
-  
+/* styles/Layout.css */
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #1e1e1e; /* или любой другой фон */
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  color: white;
+}

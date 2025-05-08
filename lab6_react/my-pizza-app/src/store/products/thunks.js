@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
+const API_URL = "https://681d14d3f74de1d219aec0b5.mockapi.io/products";
 
 /**
- * Загружает список товаров с сервера.
+ * Загружает список телефонов с сервера.
  */
 export const fetchProducts = createAsyncThunk("products/fetch", async () => {
   const res = await axios.get(API_URL);
@@ -12,8 +12,8 @@ export const fetchProducts = createAsyncThunk("products/fetch", async () => {
 });
 
 /**
- * Отправляет новый товар на сервер.
- * @param {Object} product - Объект пиццы
+ * Отправляет новый телефон на сервер.
+ * @param {Object} product - Объект телефона
  */
 export const createProduct = createAsyncThunk("products/create", async (product) => {
   const res = await axios.post(API_URL, product);

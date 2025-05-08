@@ -11,12 +11,13 @@ import { removeFromCart } from "../features/cartSlice";
  * @returns {JSX.Element} Страница корзины
  */
 function CartPage() {
-  const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart?.items || []); // ✅ защита от undefined
 
-  const total = cart
-    .reduce((sum, p) => sum + parseFloat(p.price), 0)
-    .toFixed(2);
+  const total = cart.reduce(
+    (sum, phone) => sum + parseFloat(phone.price || 0),
+    0
+  ).toFixed(2);
 
   return (
     <div className="container">
@@ -26,9 +27,9 @@ function CartPage() {
           Корзина пуста. <Link to="/">Перейти в каталог</Link>
         </p>
       ) : (
-        <div>
+        <div className="cart-list">
           {cart.map((phone) => (
-            <div key={phone.id} className="phone-card">
+            <div key={phone.id} className="phone-card" style={{ marginBottom: "20px" }}>
               <img
                 src={phone.image}
                 alt={phone.name}
@@ -42,13 +43,16 @@ function CartPage() {
               />
               <h3>{phone.name}</h3>
               <p>{phone.description}</p>
-              <p>{phone.price} лей</p>
-              <button onClick={() => dispatch(removeFromCart(phone.id))}>
+              <p>Цена: {phone.price} лей</p>
+              <button
+                className="btn-delete"
+                onClick={() => dispatch(removeFromCart(phone.id))}
+              >
                 Удалить
               </button>
             </div>
           ))}
-          <h3>Итого: {total} лей</h3>
+          <h3 style={{ marginTop: "30px" }}>Итого: {total} лей</h3>
         </div>
       )}
     </div>

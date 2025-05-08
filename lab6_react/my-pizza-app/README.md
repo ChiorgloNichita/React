@@ -2,299 +2,246 @@
 
 ##  Цель работы
 
-Познакомиться с концепцией глобального состояния в React и научиться использовать Redux Toolkit для управления общими данными между компонентами. Научиться добавлять, изменять и удалять товары в корзине с использованием глобального хранилища.
+Изучить концепцию глобального состояния в React и реализовать корзину товаров с использованием Redux Toolkit. Научиться загружать товары с сервера, добавлять, изменять и удалять их, управлять состоянием корзины через `store`.
 
 ---
 
-##  Выполненные задания
+##  Установка и запуск
 
-###  Задание 1. Установка и настройка Redux Toolkit
-
-**Выполнено:** Установлены зависимости и создан Redux Store.
-
-**Код:**
+1. Клонируйте репозиторий:
 
 ```bash
-npm install @reduxjs/toolkit react-redux
+git clone https://github.com/your-name/pizza-shop-react.git
+cd my-pizza-app
 ```
 
+2. Установите зависимости:
+
+```bash
+npm install
+```
+
+3. Запустите приложение:
+
+```bash
+npm run dev
+```
+
+4. Перейдите в браузер:
+
+```
+http://localhost:5173
+```
+
+---
+
+##  Описание проекта
+
+**Онлайн-Пиццерия** — это клиентская часть веб-приложения на React, где реализовано:
+
+* отображение товаров с mockAPI;
+* добавление, удаление, редактирование пицц;
+* фильтрация, поиск, сортировка;
+* корзина с увеличением/уменьшением количества;
+* слайдер с акциями;
+* глобальное состояние с Redux Toolkit;
+* сохранение корзины в localStorage.
+
+---
+
+##  Основные функции и код
+
+###  Хранилище `store.js`
+
 ```js
-// src/store/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cart/slice";
 import productsReducer from "./products/slice";
 
-/**
- * Конфигурация Redux Store.
- * Включает два редьюсера: корзина и список продуктов.
- *
- * @constant
- */
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
     products: productsReducer,
   },
 });
-
-```
-
-**В main.jsx:**
-
-```jsx
-<Provider store={store}>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-</Provider>
 ```
 
 ---
 
-###  Задание 2. Реализация корзины
-
-**Выполнено:** Создан слайс, реализованы действия: `addToCart`, `removeFromCart`, `updateQuantity`.
-
-**Код:**
+###  Корзина: `slice.js`
 
 ```js
-// src/store/cart/slice.js
-import { createSlice } from "@reduxjs/toolkit";
-
-/**
- * Загружает состояние корзины из localStorage.
- * @returns {{items: Array, totalQuantity: number}}
- */
-const loadCart = () => {
-  try {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : { items: [], totalQuantity: 0 };
-  } catch {
-    return { items: [], totalQuantity: 0 };
-  }
-};
-
-/**
- * Сохраняет состояние корзины в localStorage.
- * @param {Object} state - Состояние корзины
- */
-const saveCart = (state) => {
-  localStorage.setItem("cart", JSON.stringify(state));
-};
-
-const initialState = loadCart();
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    /**
-     * Добавляет товар в корзину или увеличивает количество.
-     * @param {Object} state
-     * @param {Object} action
-     */
     addToCart(state, action) {
       const item = action.payload;
-      const existing = state.items.find((i) => i.id === item.id);
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        state.items.push({ ...item, quantity: 1 });
-      }
+      const existing = state.items.find(i => i.id === item.id);
+      if (existing) existing.quantity += 1;
+      else state.items.push({ ...item, quantity: 1 });
       state.totalQuantity += 1;
       saveCart(state);
     },
-
-    /**
-     * Удаляет товар из корзины по ID.
-     * @param {Object} state
-     * @param {Object} action
-     */
-    removeFromCart(state, action) {
-      const id = action.payload;
-      const item = state.items.find((i) => i.id === id);
-      if (item) {
-        state.totalQuantity -= item.quantity;
-        state.items = state.items.filter((i) => i.id !== id);
-        saveCart(state);
-      }
-    },
-
-    /**
-     * Обновляет количество товара в корзине.
-     * @param {Object} state
-     * @param {Object} action
-     */
     updateQuantity(state, action) {
       const { id, quantity } = action.payload;
-      const item = state.items.find((i) => i.id === id);
-      if (item && quantity > 0) {
+      const item = state.items.find(i => i.id === id);
+      if (item) {
         state.totalQuantity += quantity - item.quantity;
         item.quantity = quantity;
         saveCart(state);
       }
     },
-  },
+    removeFromCart(state, action) {
+      const id = action.payload;
+      const item = state.items.find(i => i.id === id);
+      if (item) {
+        state.totalQuantity -= item.quantity;
+        state.items = state.items.filter(i => i.id !== id);
+        saveCart(state);
+      }
+    }
+  }
 });
-
-export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
-export default cartSlice.reducer;
-```
-
-**Использование в компоненте PizzaCard:**
-
-```js
-const dispatch = useDispatch();
-dispatch(addToCart(pizza));
 ```
 
 ---
 
-###  Задание 3. Количество товаров в Header
-
-**Выполнено:**
-Используется селектор `selectCartItemsCount` для отображения количества в шапке.
-
-**Код:**
+###  Селекторы: `actions.js`
 
 ```js
-// src/store/cart/actions.js
+export const selectCart = (state) => state.cart || { items: [] };
 export const selectCartItemsCount = (state) =>
-  state.cart.items.reduce((total, item) => total + item.quantity, 0);
+  (state.cart?.items || []).reduce((total, item) => total + (item.quantity || 1), 0);
 ```
+
+---
+
+###  Компонент `CartPage.jsx`
 
 ```jsx
-// Header.jsx
-const count = useSelector(selectCartItemsCount);
-<Link to="/cart">Корзина ({count})</Link>
+const cart = useSelector(selectCart);
+const totalPrice = cart.items.reduce(
+  (sum, item) => sum + item.price * item.quantity, 0
+);
 ```
 
 ---
 
-###  Задание 4. Вынос действий в actions.js
-
-**Выполнено:**
-Создан отдельный файл `actions.js`, откуда экспортируются селекторы.
-
-**Код:**
+###  Асинхронная загрузка: `thunks.js`
 
 ```js
-// src/store/cart/actions.js
-/**
- * Селектор для получения состояния корзины.
- * @param {Object} state
- * @returns {Object}
- */
-export const selectCart = (state) => state.cart;
-
-/**
- * Селектор для подсчета общего количества товаров.
- * @param {Object} state
- * @returns {number}
- */
-export const selectCartItemsCount = (state) =>
-  state.cart.items.reduce((total, item) => total + item.quantity, 0);
-```
-
----
-
-###  Задание 5. Сохранение в localStorage
-
-**Выполнено:**
-Состояние корзины сохраняется и загружается из localStorage.
-
-**Код:**
-
-```js
-const loadCart = () => {
-  const saved = localStorage.getItem('cart');
-  return saved ? JSON.parse(saved) : { items: [], totalQuantity: 0 };
-};
-
-const saveCart = (state) => {
-  localStorage.setItem('cart', JSON.stringify(state));
-};
-
-// Внутри редьюсеров вызывается saveCart(state);
-```
-
----
-
-###  Задание 6. Асинхронная загрузка товаров (createAsyncThunk)
-
-**Выполнено:**
-Данные загружаются и отправляются через `createAsyncThunk`.
-
-**Код:**
-
-```js
-// src/store/products/thunks.js
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
-
-/**
- * Загружает список товаров с сервера.
- */
 export const fetchProducts = createAsyncThunk("products/fetch", async () => {
   const res = await axios.get(API_URL);
   return res.data;
 });
-
-/**
- * Отправляет новый товар на сервер.
- * @param {Object} product - Объект пиццы
- */
-export const createProduct = createAsyncThunk("products/create", async (product) => {
-  const res = await axios.post(API_URL, product);
-  return res.data;
-});
-
 ```
 
-**В компоненте:**
+---
+
+###  Пицца-карточка: `PizzaCard.jsx`
+
+```jsx
+const handleAddToCart = () => {
+  dispatch(addToCart({ ...pizza, selectedSize }));
+};
+```
+
+---
+
+###  Форма добавления: `ProductForm.jsx`
 
 ```js
+const handleSubmit = async (e) => {
+  if (isEdit) {
+    await axios.put(`${API_URL}/${id}`, form);
+  } else {
+    await axios.post(API_URL, form);
+  }
+  navigate("/");
+};
+```
+
+---
+
+###  Слайдер с акциями: `Slider.jsx`
+
+```jsx
 useEffect(() => {
-  dispatch(fetchProducts());
+  const timer = setInterval(nextSlide, 4000);
+  return () => clearInterval(timer);
 }, []);
 ```
 
-#  Контрольные вопросы
+---
 
-### 1. Что такое глобальное состояние и зачем оно нужно?
+###  Поиск по товарам: `Search.jsx`
 
-Глобальное состояние — это единое хранилище данных, доступное для разных компонентов. Нужно для синхронизации, например: корзина, авторизация.
+```jsx
+<input
+  type="text"
+  placeholder="Поиск по названию..."
+  onChange={(e) => onSearch(e.target.value)}
+/>
+```
 
-### 2. Что такое Redux Toolkit и как он упрощает работу с глобальным состоянием??
+---
 
-Redux Toolkit — современная обёртка над Redux, упрощает создание слайсов, действий, асинхронной логики и уменьшает шаблонный код.
+###  Фильтрация и сортировка: `PizzaList.jsx`
 
-###  Как он помогает с глобальным состоянием?
+```js
+const filteredPizzas = pizzas
+  .filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  .sort((a, b) => a.price - b.price);
+```
 
-Глобальное состояние — это единый источник данных (например, корзина, пользователь, список товаров), доступный **из любого компонента**.
+---
 
-С RTK:
+##  Использованные технологии
 
-* создаёшь `slice.js` с `initialState` и функциями (редьюсерами);
-* в `store.js` подключаешь слайсы;
-* используешь `useSelector()` и `useDispatch()` для доступа и обновления.
+* React 18
+* Redux Toolkit
+* React Router
+* Axios
+* MockAPI
+* CSS Modules
+* JSDoc
 
-### 3. Что такое слайсы и как они помогают организовать код??
+---
+# Контрольные вопросы
 
-Слайс — часть состояния + логика работы с ним (actions + reducers). Организуют код по фичам.
+###  Что такое глобальное состояние и зачем оно нужно?
 
-###  Как слайсы помогают организовать код?
+**Глобальное состояние** — это данные, которые хранятся в одном общем месте и доступны из разных компонентов приложения.
+Примеры таких данных: содержимое корзины, авторизация пользователя, настройки темы.
 
-1. **Модульность** — каждый слайс отвечает за отдельную часть логики (например, `cart`, `products`).
-2. **Упрощение** — не нужно вручную писать `action creators` и `switch-case` редьюсеры.
-3. **Читаемость и поддержка** — код становится проще в понимании и доработке.
+**Зачем нужно:**
 
+* Чтобы избежать дублирования состояния в разных компонентах;
+* Чтобы компоненты могли обмениваться данными напрямую, без "проброса пропсов" на каждом уровне;
+* Чтобы обновления данных были синхронизированы между всеми частями интерфейса.
 
-##  Вывод
+---
 
-В рамках работы была реализована полноценная корзина с глобальным состоянием, локальным хранением и асинхронной загрузкой товаров. Все задания и дополнения выполнены.
+###  Что такое Redux Toolkit и как он упрощает работу с глобальным состоянием?
 
+**Redux Toolkit (RTK)** — это современная библиотека для управления состоянием, основанная на Redux, но с минимальной настройкой и шаблонным кодом.
 
+**Как упрощает работу:**
+
+* Автоматически создаёт `actions` и `reducers` через `createSlice`;
+* Упрощает работу с асинхронными запросами через `createAsyncThunk`;
+* Позволяет писать чистый и читаемый код;
+
+---
+
+###  Что такое слайсы (slices) и как они помогают организовать код?
+
+**Slice (слайс)** — это часть глобального состояния приложения + функции, которые с этим состоянием работают. Создаётся с помощью `createSlice`.
+
+**Зачем нужны:**
+
+* Разделяют состояние по логике (например, `cartSlice`, `productsSlice`);
+* Содержат и данные (`state`), и действия (`reducers`) вместе;
+* Повышают модульность и читаемость кода;
 

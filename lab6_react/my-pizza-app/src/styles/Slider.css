@@ -1,0 +1,33 @@
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffeb3b;
+  color: #222;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 14px 24px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+.slider-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #333;
+  padding: 6px 12px;
+  transition: color 0.2s ease;
+}
+
+.slider-btn:hover {
+  color: #1976d2;
+}
+
+.slider-text {
+  flex: 1;
+  text-align: center;
+}

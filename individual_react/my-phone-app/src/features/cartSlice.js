@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Безопасное чтение данных из localStorage
+const saved = JSON.parse(localStorage.getItem("cart"));
 const initialState = {
-  items: JSON.parse(localStorage.getItem("cart")) || [],
+  items: Array.isArray(saved) ? saved : [], // гарантировано массив
 };
 
 /**
@@ -13,9 +15,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     /**
-     * Добавляет товар в корзину, если его ещё нет.
-     * @param {Object} state - Текущее состояние корзины
-     * @param {Object} action - Действие с payload (товар)
+     * Добавляет товар в корзину, если он ещё не добавлен.
      */
     addToCart(state, action) {
       const exists = state.items.find(item => item.id === action.payload.id);
@@ -26,9 +26,7 @@ const cartSlice = createSlice({
     },
 
     /**
-     * Удаляет товар из корзины по ID.
-     * @param {Object} state - Текущее состояние корзины
-     * @param {Object} action - Действие с payload (ID товара)
+     * Удаляет товар по ID.
      */
     removeFromCart(state, action) {
       state.items = state.items.filter(item => item.id !== action.payload);
@@ -36,8 +34,7 @@ const cartSlice = createSlice({
     },
 
     /**
-     * Полностью очищает корзину и localStorage.
-     * @param {Object} state - Текущее состояние корзины
+     * Полная очистка корзины.
      */
     clearCart(state) {
       state.items = [];
@@ -47,5 +44,4 @@ const cartSlice = createSlice({
 });
 
 export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
-
 export default cartSlice.reducer;

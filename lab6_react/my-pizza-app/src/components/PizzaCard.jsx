@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cart/slice";
 import "../styles/PizzaCard.css";
 
-const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
+const API_URL = "https://681d14d3f74de1d219aec0b5.mockapi.io/products";
 
 /**
  * Компонент карточки пиццы.
@@ -17,7 +17,12 @@ const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
 function PizzaCard({ pizza }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const defaultSizes = pizza.sizes || [25, 30, 35];
+
+  // ✅ Преобразуем sizes в массив (если это строка)
+  const defaultSizes = Array.isArray(pizza.sizes)
+    ? pizza.sizes
+    : String(pizza.sizes).split(",").map((s) => s.trim());
+
   const [selectedSize, setSelectedSize] = useState(defaultSizes[0]);
 
   const handleSizeChange = (size) => {

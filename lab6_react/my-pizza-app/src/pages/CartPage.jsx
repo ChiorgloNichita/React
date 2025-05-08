@@ -1,44 +1,60 @@
-// src/pages/CartPage.jsx
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../store/cart/actions";
 import { updateQuantity, removeFromCart } from "../store/cart/slice";
+import "../styles/CartPage.css"; // Не забудь создать этот файл
 
 /**
  * Страница отображения корзины.
  * Позволяет изменять количество и удалять товары.
  *
  * @component
+ * @returns {JSX.Element}
  */
 function CartPage() {
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
 
   const handleUpdate = (id, quantity) => {
-    dispatch(updateQuantity({ id, quantity }));
+    if (quantity > 0) {
+      dispatch(updateQuantity({ id, quantity }));
+    }
   };
 
   const handleRemove = (id) => dispatch(removeFromCart(id));
 
+  const totalPrice = cart.items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
   return (
-    <div>
-      <h2>Корзина</h2>
+    <div className="container">
+      <h2 className="cart-title">Корзина</h2>
       {cart.items.length === 0 ? (
-        <p>Корзина пуста.</p>
+        <p className="empty-cart">Корзина пуста.</p>
       ) : (
-        <div>
-          {cart.items.map((pizza) => (
-            <div key={pizza.id}>
-              <h3>{pizza.name}</h3>
-              <p>{pizza.description}</p>
-              <p>{pizza.price} лей</p>
-              <div>
-                <button onClick={() => handleUpdate(pizza.id, pizza.quantity - 1)}>-</button>
-                <span style={{ margin: '0 10px' }}>{pizza.quantity}</span>
-                <button onClick={() => handleUpdate(pizza.id, pizza.quantity + 1)}>+</button>
-                <button onClick={() => handleRemove(pizza.id)}>Удалить</button>
+        <div className="cart-list">
+          {cart.items.map((item) => (
+            <div key={item.id} className="cart-item">
+              <img src={item.image} alt={item.name} className="cart-image" />
+
+              <div className="cart-info">
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+                <p>
+                  {item.price} лей × {item.quantity} ={" "}
+                  <strong>{item.price * item.quantity} лей</strong>
+                </p>
+                <div className="cart-controls">
+                  <button onClick={() => handleUpdate(item.id, item.quantity - 1)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => handleUpdate(item.id, item.quantity + 1)}>+</button>
+                  <button onClick={() => handleRemove(item.id)}>Удалить</button>
+                </div>
               </div>
             </div>
           ))}
+          <h3 className="total">Итого: <strong>{totalPrice} лей</strong></h3>
         </div>
       )}
     </div>

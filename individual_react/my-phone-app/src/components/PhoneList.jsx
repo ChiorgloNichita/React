@@ -7,32 +7,35 @@ import { Link } from "react-router-dom";
 import "../styles/PhoneList.css";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
+import Slider from "./Slider"; // Слайдер акций
 
 const API_URL = "https://67fbaba81f8b41c8168487dc.mockapi.io/products";
 
 /**
  * Компонент списка телефонов.
- * Отображает телефоны с возможностью поиска, фильтрации, сортировки и добавления в корзину.
+ * Позволяет отображать, фильтровать, сортировать и добавлять телефоны в корзину.
  *
  * @component
- * @returns {JSX.Element} Список карточек телефонов и управляющих элементов
+ * @returns {JSX.Element}
  */
 function PhoneList() {
-  const [phones, setPhones] = useState([]);
-  const [filteredPhones, setFilteredPhones] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [sortOption, setSortOption] = useState("none");
-  const [category, setCategory] = useState("all");
+  const [phones, setPhones] = useState([]); // Все телефоны
+  const [filteredPhones, setFilteredPhones] = useState([]); // Отфильтрованные телефоны
+  const [loading, setLoading] = useState(true); // Состояние загрузки
+  const [sortOption, setSortOption] = useState("none"); // Выбранная сортировка
+  const [category, setCategory] = useState("all"); // Выбранная категория
 
   const dispatch = useDispatch();
 
-  // Загружает список телефонов с сервера
+  /**
+   * Загружает список телефонов при монтировании компонента.
+   */
   useEffect(() => {
     fetchPhones();
   }, []);
 
   /**
-   * Получает данные с API и сохраняет в состояние.
+   * Получает список телефонов с сервера.
    */
   const fetchPhones = async () => {
     try {
@@ -48,9 +51,9 @@ function PhoneList() {
   };
 
   /**
-   * Обрабатывает поиск по названию и описанию телефона.
+   * Выполняет поиск по имени или описанию телефона.
    *
-   * @param {string} query Строка поиска
+   * @param {string} query - строка поиска
    */
   const handleSearch = debounce((query) => {
     const lower = query.toLowerCase();
@@ -63,30 +66,33 @@ function PhoneList() {
   }, 300);
 
   /**
-   * Обрабатывает сортировку по цене или имени.
+   * Обрабатывает сортировку телефонов.
    *
-   * @param {React.ChangeEvent<HTMLSelectElement>} e
+   * @param {React.ChangeEvent<HTMLSelectElement>} e - событие изменения select
    */
   const handleSort = (e) => {
     const option = e.target.value;
     setSortOption(option);
     let sorted = [...filteredPhones];
+
     if (option === "price") {
       sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
     } else if (option === "name") {
       sorted.sort((a, b) => a.name.localeCompare(b.name));
     }
+
     setFilteredPhones(sorted);
   };
 
   /**
    * Фильтрует телефоны по категории.
    *
-   * @param {React.ChangeEvent<HTMLSelectElement>} e
+   * @param {React.ChangeEvent<HTMLSelectElement>} e - выбранная категория
    */
   const handleFilter = (e) => {
     const selected = e.target.value;
     setCategory(selected);
+
     if (selected === "all") {
       setFilteredPhones(phones);
     } else {
@@ -96,9 +102,9 @@ function PhoneList() {
   };
 
   /**
-   * Добавляет телефон в корзину.
+   * Добавляет товар в корзину.
    *
-   * @param {Object} phone Объект телефона
+   * @param {Object} phone - объект телефона
    */
   const handleAddToCart = (phone) => {
     dispatch(addToCart(phone));
@@ -106,6 +112,8 @@ function PhoneList() {
 
   return (
     <div className="phone-list-wrapper">
+      <Slider />
+
       <h2>Наши телефоны</h2>
 
       <Link to="/add">

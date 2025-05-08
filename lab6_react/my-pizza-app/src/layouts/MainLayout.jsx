@@ -1,22 +1,17 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
+import "../styles/Layout.css";
 
-/**
- * Общий Layout с хедером и футером.
- * Контент вставляется в Outlet между Header и Footer.
- *
- * @component
- */
 function MainLayout() {
   return (
-    <>
+    <div className="layout-wrapper">
       <Header />
-      <main className="container">
+      <main className="main-content">
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
